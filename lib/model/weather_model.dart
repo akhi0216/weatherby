@@ -51,10 +51,12 @@ class HourlyWeather {
 
   static HourlyWeather mock(int i) {
     final now = DateTime.now();
+    final hourValue = (now.hour + i) % 24;
+    final hourStr = hourValue.toString().padLeft(2, '0') + ':00';
     return HourlyWeather(
-      hour: "${(now.hour + i) % 24} ${((now.hour + i) % 24) < 12 ? 'AM' : 'PM'}",
+      hour: hourStr,
       temp: 16 + i,
-      iconUrl: 'https://i.imgur.com/jfKeT0H.png',
+      iconUrl: 'https://openweathermap.org/img/wn/04n@2x.png',
     );
   }
 }

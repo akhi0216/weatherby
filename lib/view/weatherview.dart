@@ -145,22 +145,12 @@ class WeatherView extends StatelessWidget {
                 color: Colors.white.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.menu, color: Colors.black87),
             ),
             actions: [
               Container(width: 48),
             ],
             elevation: 0,
             backgroundColor: Colors.transparent,
-            bottom: const TabBar(
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.blueAccent,
-              indicatorWeight: 3,
-              tabs: [
-                Tab(text: 'Hourly'),
-              ],
-            ),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

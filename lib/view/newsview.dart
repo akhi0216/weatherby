@@ -36,7 +36,6 @@ class NewsView extends StatelessWidget {
                 color: Colors.white.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.menu, color: Colors.black87),
             ),
             actions: [
               Container(width: 48),

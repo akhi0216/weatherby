@@ -30,13 +30,13 @@ class NewsView extends StatelessWidget {
           appBar: AppBar(
             title: const Text('News', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
             centerTitle: true,
-            leading: Container(
-              margin: const EdgeInsets.only(left: 12),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            // leading: Container(
+            //   margin: const EdgeInsets.only(left: 12),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white.withOpacity(0.7),
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            // ),
             actions: [
               Container(width: 48),
             ],

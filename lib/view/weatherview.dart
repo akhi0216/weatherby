@@ -50,8 +50,12 @@ class HourlyForecast extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Text(h.hour, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
-                  Text('${h.temp}°', style: const TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w500)),
+                  Text(h.hour,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 15)),
+                  Text('${h.temp}°',
+                      style: const TextStyle(
+                          color: Colors.blueGrey, fontWeight: FontWeight.w500)),
                 ],
               );
             },
@@ -70,18 +74,43 @@ class TodayMetrics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final metrics = [
-      {'icon': Icons.thermostat_outlined, 'label': 'Temperature', 'value': '${weather.tempMin}° / ${weather.tempMax}°'},
-      {'icon': Icons.umbrella_outlined, 'label': 'Precipitation', 'value': '${weather.precipitation} %'},
-      {'icon': Icons.air, 'label': 'Wind', 'value': '${weather.windSpeed} km/h'},
-      {'icon': Icons.opacity, 'label': 'Humidity', 'value': '${weather.humidity} %'},
-      {'icon': Icons.speed, 'label': 'Pressure', 'value': '${weather.pressure} hPa'},
-      {'icon': Icons.visibility_outlined, 'label': 'Visibility', 'value': '${weather.visibility} km'},
+      {
+        'icon': Icons.thermostat_outlined,
+        'label': 'Temperature',
+        'value': '${weather.tempMin}° / ${weather.tempMax}°'
+      },
+      {
+        'icon': Icons.umbrella_outlined,
+        'label': 'Precipitation',
+        'value': '${weather.precipitation} %'
+      },
+      {
+        'icon': Icons.air,
+        'label': 'Wind',
+        'value': '${weather.windSpeed} km/h'
+      },
+      {
+        'icon': Icons.opacity,
+        'label': 'Humidity',
+        'value': '${weather.humidity} %'
+      },
+      {
+        'icon': Icons.speed,
+        'label': 'Pressure',
+        'value': '${weather.pressure} hPa'
+      },
+      {
+        'icon': Icons.visibility_outlined,
+        'label': 'Visibility',
+        'value': '${weather.visibility} km'
+      },
     ];
 
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.white.withOpacity(0.85),
+      // color: const Color.fromARGB(255, 125, 224, 214).withOpacity(0.85),
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         child: Column(
@@ -96,12 +125,19 @@ class TodayMetrics extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     padding: const EdgeInsets.all(12),
-                    child: Icon(m['icon'] as IconData, size: 26, color: Colors.blueAccent),
+                    child: Icon(m['icon'] as IconData,
+                        size: 26, color: Colors.blueAccent),
                   ),
                   const SizedBox(width: 18),
-                  Text(m['label'] as String, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                  Text(m['label'] as String,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500)),
                   const Spacer(),
-                  Text(m['value'] as String, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.blueGrey)),
+                  Text(m['value'] as String,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.blueGrey)),
                 ],
               ),
             );
@@ -128,29 +164,48 @@ class WeatherView extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFB2EBF2),
-              Color(0xFFE0F7FA),
-              Color(0xFFFFFFFF),
+              Color.fromARGB(255, 170, 224, 231),
+              Color.fromARGB(255, 152, 217, 225),
+              // Color(0xFFE0F7FA),
+              // Color(0xFFFFFFFF),
+              Color.fromARGB(255, 79, 204, 220),
+              Color.fromARGB(255, 79, 204, 220),
             ],
           ),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            title: const Text('Weather', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-            centerTitle: true,
-            leading: Container(
-              margin: const EdgeInsets.only(left: 12),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(130),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+              ),
+              padding: const EdgeInsets.only(top: 30, left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '☀️ Weatherby',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Your city’s forecast at a glance',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white.withOpacity(0.85),
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
               ),
             ),
-            actions: [
-              Container(width: 48),
-            ],
-            elevation: 0,
-            backgroundColor: Colors.transparent,
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -168,7 +223,8 @@ class WeatherView extends StatelessWidget {
                       labelText: 'Enter City',
                       suffixIcon: Icon(Icons.search),
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     ),
                     style: const TextStyle(fontSize: 16),
                     onSubmitted: (city) => weatherCtrl.fetchWeather(city),
@@ -177,12 +233,17 @@ class WeatherView extends StatelessWidget {
                 const SizedBox(height: 18),
                 Obx(() {
                   if (weatherCtrl.isLoading.value) {
-                    return const Expanded(child: Center(child: CircularProgressIndicator()));
+                    return const Expanded(
+                        child: Center(child: CircularProgressIndicator()));
                   }
 
                   final weather = weatherCtrl.weather.value;
                   if (weather == null) {
-                    return const Expanded(child: Center(child: Text('No weather data', style: TextStyle(fontSize: 18, color: Colors.grey))));
+                    return const Expanded(
+                        child: Center(
+                            child: Text('No weather data',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.grey))));
                   }
 
                   return Expanded(
@@ -191,16 +252,24 @@ class WeatherView extends StatelessWidget {
                         ListView(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 4, bottom: 4),
+                              padding:
+                                  const EdgeInsets.only(left: 4, bottom: 4),
                               child: Text(
                                 cityCtrl.text,
-                                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                                style: const TextStyle(
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blueAccent),
                               ),
                             ),
                             const SizedBox(height: 8),
                             HourlyForecast(hourly: weather.hourly),
                             const SizedBox(height: 24),
-                            const Text('Today', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+                            const Text('Today',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87)),
                             const SizedBox(height: 12),
                             TodayMetrics(weather: weather),
                           ],

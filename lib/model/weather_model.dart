@@ -9,6 +9,7 @@ class WeatherModel {
   final int precipitation;
   final int visibility;
   final List<HourlyWeather> hourly;
+  final String country;
 
   WeatherModel({
     required this.main,
@@ -21,6 +22,7 @@ class WeatherModel {
     required this.precipitation,
     required this.visibility,
     required this.hourly,
+    required this.country,
   });
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class WeatherModel {
       precipitation: json['pop'] != null ? (json['pop'] * 100).toInt() : 10,
       visibility: ((json['visibility'] ?? 10000) / 1000).round(),
       hourly: List.generate(5, (i) => HourlyWeather.mock(i)),
+      country: json['sys'] != null && json['sys']['country'] != null ? json['sys']['country'].toString().toLowerCase() : 'us',
     );
   }
 }

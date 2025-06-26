@@ -46,7 +46,15 @@ class NewsController extends GetxController {
   Future<void> fetchNews() async {
     isLoading.value = true;
     final cat = _categoryToString(selectedCategory.value);
-    final fetched = await service.getNews();
+    String categoryToFetch = cat;
+    if (selectedCategory.value == NewsCategory.local) {
+      final weatherMain = weatherCtrl.weather.value?.main.toLowerCase() ?? '';
+      if (weatherMain.isNotEmpty) {
+        categoryToFetch = 'weather';
+      }
+    }
+    final country = weatherCtrl.weather.value?.country?.toLowerCase() ?? 'us';
+    final fetched = await service.getNews(category: categoryToFetch, country: country);
 
     final weatherMain = weatherCtrl.weather.value?.main.toLowerCase() ?? '';
     final relatedTopics = weatherTopicMap[weatherMain] ?? [];
@@ -71,8 +79,7 @@ class NewsController extends GetxController {
       case NewsCategory.technology:
         return 'technology';
       case NewsCategory.local:
-      default:
-        return 'general';
+        return 'weather';
     }
   }
 }

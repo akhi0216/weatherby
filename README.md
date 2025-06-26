@@ -16,7 +16,7 @@ Weatherby is a beautiful Flutter app that provides real-time weather updates and
 ## Getting Started
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/weatherby.git
+   git clone https://github.com/akhi0216/weatherby.git
    cd weatherby
    ```
 2. **Install dependencies:**
